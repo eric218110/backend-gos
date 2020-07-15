@@ -6,7 +6,7 @@
   "password": "218110",
   "database": "gostack_gobarber",
   "entities": [
-    "./src/database/models/*.ts"
+    "./src/database/models/*.model.ts"
   ],
   "migrations": [
     "./src/database/migrations/*.ts"
