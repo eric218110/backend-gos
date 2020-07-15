@@ -10,9 +10,10 @@ routerAppointment.post('/', async (request: Request, response: Response) => {
 
     const user = await userService.execute({ name, email, password });
 
+    delete user.password;
+
     return response.json(user);
   } catch (error) {
-    console.log(error);
     throw new Error('Not create User');
   }
 });
