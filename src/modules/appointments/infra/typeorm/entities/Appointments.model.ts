@@ -1,6 +1,6 @@
 import { Entity, Column, ManyToOne, JoinColumn } from 'typeorm';
-import BaseModel from './BaseModel';
-import UserModel from './User.model';
+import BaseModel from '@shared/infra/typeorm/models/BaseModel';
+import UserModel from '@modules/users/infra/typeorm/entities/User.model';
 
 @Entity('appointments')
 export default class Appointments extends BaseModel {

@@ -1,5 +1,5 @@
 import { Entity, Column } from 'typeorm';
-import BaseModel from './BaseModel';
+import BaseModel from '@shared/infra/typeorm/models/BaseModel';
 
 @Entity('users')
 export default class Users extends BaseModel {

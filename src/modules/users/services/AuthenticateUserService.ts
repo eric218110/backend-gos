@@ -2,8 +2,8 @@ import { getRepository } from 'typeorm';
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import { config } from 'dotenv';
-import Users from '../database/models/User.model';
-import AppError from '../errors/AppError';
+import Users from '@modules/users/infra/typeorm/entities/User.model';
+import AppError from '@shared/errors/AppError';
 
 interface Request {
   email: string;

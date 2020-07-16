@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { verify } from 'jsonwebtoken';
 import { config } from 'dotenv';
-import AppError from '../errors/AppError';
+import AppError from '@shared/errors/AppError';
 
 interface ITokenPayload {
   iat: number;
