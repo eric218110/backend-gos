@@ -11,4 +11,7 @@ export default class Users extends BaseModel {
 
   @Column('time with time zone')
   password: string;
+
+  @Column('time with time zone')
+  avatar: string;
 }
