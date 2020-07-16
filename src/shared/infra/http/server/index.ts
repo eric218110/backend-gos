@@ -1,9 +1,9 @@
 import express, { Request, Response, NextFunction } from 'express';
 import 'express-async-errors';
-import routes from '../routes';
-import multer from '../config/multer';
-import '../database';
-import AppError from '../errors/AppError';
+import AppError from '@shared/errors/AppError';
+import multer from '@config/multer';
+import routes from '@shared/infra/http/routes';
+import '@shared/infra/typeorm';
 
 const app = express();
 

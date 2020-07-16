@@ -1,9 +1,9 @@
 import { getRepository } from 'typeorm';
 import path from 'path';
 import fs from 'fs';
-import Users from '../database/models/User.model';
-import configMulter from '../config/multer';
-import AppError from '../errors/AppError';
+import configMulter from '@config/multer';
+import Users from '@modules/users/infra/typeorm/entities/User.model';
+import AppError from '../../../shared/errors/AppError';
 
 interface Request {
   userId: string;
