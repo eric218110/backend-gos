@@ -1,5 +1,6 @@
 import { createConnection } from 'typeorm';
 import { config } from 'dotenv';
+import { resolve } from 'path';
 
 config();
 
@@ -22,6 +23,7 @@ if (MODE === 'development') {
     password: PASSWORD,
     database: DATABASE,
     port: Number(PORT_DATABASE),
+    entities: [resolve(__dirname, '.', 'models', '*.model{.ts,.js}')],
   });
 }
 
