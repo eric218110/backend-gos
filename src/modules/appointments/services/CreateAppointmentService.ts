@@ -23,12 +23,10 @@ export default class CreateAppointmentService {
       throw new AppError('This appointment has existed');
     }
 
-    const saveAppointment = appointmentRepository.create({
+    const saveAppointment = await appointmentRepository.create({
       providerId,
       date,
     });
-
-    await appointmentRepository.save(saveAppointment);
 
     return saveAppointment;
   }
