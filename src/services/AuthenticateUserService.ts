@@ -3,6 +3,7 @@ import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import { config } from 'dotenv';
 import Users from '../database/models/User.model';
+import AppError from '../errors/AppError';
 
 interface Request {
   email: string;
@@ -28,13 +29,13 @@ export default class AuthenticateUserService {
     const user = await userRepository.findOne({ where: { email } });
 
     if (!user) {
-      throw new Error('Imcorrect email or password');
+      throw new AppError('Imcorrect email or password', 401);
     }
 
     const passwordMatched = await compare(password, user.password);
 
     if (!passwordMatched) {
-      throw new Error('Imcorrect email or password');
+      throw new AppError('Imcorrect email or password', 401);
     }
 
     const { HASH_JWT } = process.env;

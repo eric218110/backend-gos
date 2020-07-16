@@ -1,24 +1,20 @@
 import { Router, Request, Response } from 'express';
 import AuthenticateUserService from '../services/AuthenticateUserService';
 
-const routerAppointment = Router();
+const sessionRouter = Router();
 
-routerAppointment.post('/', async (request: Request, response: Response) => {
-  try {
-    const { email, password } = request.body;
-    const authenticateUserService = new AuthenticateUserService();
+sessionRouter.post('/', async (request: Request, response: Response) => {
+  const { email, password } = request.body;
+  const authenticateUserService = new AuthenticateUserService();
 
-    const { user, token } = await authenticateUserService.execute({
-      email,
-      password,
-    });
+  const { user, token } = await authenticateUserService.execute({
+    email,
+    password,
+  });
 
-    delete user.password;
+  delete user.password;
 
-    return response.json({ user, token });
-  } catch (error) {
-    throw new Error('Not create Session');
-  }
+  return response.json({ user, token });
 });
 
-export default routerAppointment;
+export default sessionRouter;

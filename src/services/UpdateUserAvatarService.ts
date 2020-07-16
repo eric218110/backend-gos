@@ -3,6 +3,7 @@ import path from 'path';
 import fs from 'fs';
 import Users from '../database/models/User.model';
 import configMulter from '../config/multer';
+import AppError from '../errors/AppError';
 
 interface Request {
   userId: string;
@@ -16,7 +17,7 @@ export default class UpdateUserAvatarService {
     const user = await userRepository.findOne(userId);
 
     if (!user) {
-      throw new Error('Only authenticated users can change avatar');
+      throw new AppError('Only authenticated users can change avatar', 401);
     }
 
     if (user.avatar) {

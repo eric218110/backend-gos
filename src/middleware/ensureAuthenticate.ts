@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { verify } from 'jsonwebtoken';
 import { config } from 'dotenv';
+import AppError from '../errors/AppError';
 
 interface ITokenPayload {
   iat: number;
@@ -16,7 +17,7 @@ export default function ensureAuthenticate(
   const authorizationHeader = request.headers.authorization;
 
   if (!authorizationHeader) {
-    throw new Error('JWT token is missing');
+    throw new AppError('JWT token is missing', 401);
   }
 
   const [, token] = authorizationHeader.split(' ');
@@ -39,6 +40,6 @@ export default function ensureAuthenticate(
 
     return next();
   } catch {
-    throw new Error('Token invalid');
+    throw new AppError('Token invalid', 401);
   }
 }

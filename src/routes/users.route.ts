@@ -28,20 +28,16 @@ userRouter.patch(
   ensureAuthenticate,
   upload.single('avatar'),
   async (request: Request, response: Response) => {
-    try {
-      const updateUserAvatarService = new UpdateUserAvatarService();
+    const updateUserAvatarService = new UpdateUserAvatarService();
 
-      const user = await updateUserAvatarService.execute({
-        userId: request.user.id,
-        avatarFileName: request.file.filename,
-      });
+    const user = await updateUserAvatarService.execute({
+      userId: request.user.id,
+      avatarFileName: request.file.filename,
+    });
 
-      delete user.password;
+    delete user.password;
 
-      return response.json(user);
-    } catch (error) {
-      throw new Error('Not upload photo');
-    }
+    return response.json(user);
   },
 );
 

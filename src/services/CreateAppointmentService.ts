@@ -2,6 +2,7 @@ import { getCustomRepository } from 'typeorm';
 import { startOfHour } from 'date-fns';
 import AppointmentsRepository from '../database/repositories/AppointmentsRepository';
 import Appointments from '../database/models/Appointments.model';
+import AppError from '../errors/AppError';
 
 interface Request {
   date: Date;
@@ -19,7 +20,7 @@ export default class CreateAppointmentService {
     );
 
     if (findAppointmentInSameDate) {
-      throw new Error('This appointment has existed');
+      throw new AppError('This appointment has existed');
     }
 
     const saveAppointment = appointmentRepository.create({
