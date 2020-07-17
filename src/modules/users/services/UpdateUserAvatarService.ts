@@ -1,6 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 import configMulter from '@config/multer';
+import { inject, injectable } from 'tsyringe';
 import Users from '@modules/users/infra/typeorm/entities/User.entity';
 import AppError from '../../../shared/errors/AppError';
 import IUsersRepository from '../repositories/IUsersRepository';
@@ -10,8 +11,12 @@ interface Request {
   avatarFileName: string;
 }
 
+@injectable()
 export default class UpdateUserAvatarService {
-  constructor(private userRepository: IUsersRepository) {}
+  constructor(
+    @inject('UserRepository')
+    private userRepository: IUsersRepository,
+  ) {}
 
   public async execute({ avatarFileName, userId }: Request): Promise<Users> {
     const user = await this.userRepository.findById(userId);
