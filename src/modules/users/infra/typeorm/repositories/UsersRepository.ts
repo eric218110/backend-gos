@@ -22,7 +22,7 @@ export default class UserRepository implements IUserRepository {
 
   public async create(createUser: ICreateUsersDTO): Promise<User> {
     const user = this.ormRepository.create(createUser);
-    this.ormRepository.save(user);
+    await this.ormRepository.save(user);
     return user;
   }
 
